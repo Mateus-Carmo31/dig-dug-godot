@@ -1,0 +1,306 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Misc/ArcadeFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/OptionsMenu.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/VolumeOption.gd" type="Script" id=3]
+[ext_resource path="res://Audio/SFX/pump.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/pause_sound.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scripts/BooleanOption.gd" type="Script" id=6]
+[ext_resource path="res://Audio/SFX/rock_land.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sprites/Button.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/AudioBarFg.tres" type="StyleBox" id=9]
+[ext_resource path="res://Scenes/AudioBarBg.tres" type="StyleBox" id=10]
+
+
+
+
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform bool blink_enabled = true;
+uniform float blink_speed : hint_range(1.0, 6.0) = 4.0;
+
+void fragment()
+{
+	if(!blink_enabled)
+	{
+		COLOR = texture(TEXTURE, UV);
+	}
+	else
+	{
+		COLOR = (fract(TIME * 0.1 * blink_speed) > 0.5 ? 1.0 : 0.0) * texture(TEXTURE, UV);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/blink_enabled = false
+shader_param/blink_speed = 6.0
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/blink_enabled = false
+shader_param/blink_speed = 6.0
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/blink_enabled = false
+shader_param/blink_speed = 6.0
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 1 )
+shader_param/blink_enabled = false
+shader_param/blink_speed = 6.0
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 8 )
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="OptionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 183.0
+margin_top = 36.75
+margin_right = -185.0
+margin_bottom = -394.25
+custom_fonts/font = ExtResource( 1 )
+text = "OPTIONS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="VBoxContainer" parent="."]
+anchor_top = 0.000455141
+anchor_right = 1.0
+anchor_bottom = 1.00046
+margin_left = 33.0
+margin_top = 71.7961
+margin_right = -25.0
+margin_bottom = -236.204
+custom_constants/separation = 19
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterOption" type="HBoxContainer" parent="Options"]
+margin_right = 422.0
+margin_bottom = 17.0
+focus_neighbour_top = NodePath("../DebugOption")
+focus_neighbour_bottom = NodePath("../MusicOption")
+focus_mode = 1
+size_flags_horizontal = 3
+custom_constants/separation = 4
+alignment = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Options/MasterOption"]
+material = SubResource( 2 )
+margin_right = 208.0
+margin_bottom = 17.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Master Volume"
+
+[node name="MasterVolume" type="ProgressBar" parent="Options/MasterOption"]
+margin_left = 262.0
+margin_right = 422.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 160, 16 )
+custom_styles/fg = ExtResource( 9 )
+custom_styles/bg = ExtResource( 10 )
+max_value = 1.0
+step = 0.1
+value = 1.0
+percent_visible = false
+
+[node name="SampleAudio" type="AudioStreamPlayer" parent="Options/MasterOption"]
+
+[node name="MusicOption" type="HBoxContainer" parent="Options"]
+margin_top = 36.0
+margin_right = 422.0
+margin_bottom = 53.0
+focus_neighbour_top = NodePath("../MasterOption")
+focus_neighbour_bottom = NodePath("../SFXOption")
+focus_mode = 1
+custom_constants/separation = 20
+alignment = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+bus_id = 1
+
+[node name="Label" type="Label" parent="Options/MusicOption"]
+material = SubResource( 3 )
+margin_right = 192.0
+margin_bottom = 17.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Music Volume"
+
+[node name="MusicVolume" type="ProgressBar" parent="Options/MusicOption"]
+margin_left = 262.0
+margin_right = 422.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 160, 16 )
+custom_styles/fg = ExtResource( 9 )
+custom_styles/bg = ExtResource( 10 )
+max_value = 1.0
+step = 0.1
+value = 0.5
+percent_visible = false
+
+[node name="SampleAudio" type="AudioStreamPlayer" parent="Options/MusicOption"]
+stream = ExtResource( 5 )
+bus = "Music"
+
+[node name="SFXOption" type="HBoxContainer" parent="Options"]
+margin_top = 72.0
+margin_right = 422.0
+margin_bottom = 89.0
+focus_neighbour_top = NodePath("../MusicOption")
+focus_neighbour_bottom = NodePath("../DebugOption")
+focus_mode = 1
+custom_constants/separation = 20
+alignment = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+bus_id = 2
+
+[node name="Label" type="Label" parent="Options/SFXOption"]
+material = SubResource( 4 )
+margin_right = 192.0
+margin_bottom = 17.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "SFX Volume  "
+
+[node name="SFXVolume" type="ProgressBar" parent="Options/SFXOption"]
+margin_left = 262.0
+margin_right = 422.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 160, 16 )
+custom_styles/fg = ExtResource( 9 )
+custom_styles/bg = ExtResource( 10 )
+max_value = 1.0
+step = 0.1
+value = 0.5
+percent_visible = false
+
+[node name="SampleAudio" type="AudioStreamPlayer" parent="Options/SFXOption"]
+stream = ExtResource( 4 )
+bus = "SFX"
+
+[node name="DebugOption" type="HBoxContainer" parent="Options"]
+margin_top = 108.0
+margin_right = 422.0
+margin_bottom = 133.0
+focus_neighbour_top = NodePath("../SFXOption")
+focus_neighbour_bottom = NodePath("../MasterOption")
+focus_mode = 1
+custom_constants/separation = 220
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+param = "debug_mode"
+
+[node name="Label" type="Label" parent="Options/DebugOption"]
+material = SubResource( 5 )
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 21.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 1 )
+text = "Debug mode"
+
+[node name="Button" type="Button" parent="Options/DebugOption"]
+modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
+margin_left = 380.0
+margin_right = 405.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+toggle_mode = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="Options/DebugOption"]
+stream = ExtResource( 7 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="Title2" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 207.0
+margin_top = 232.0
+margin_right = -209.0
+margin_bottom = -199.0
+custom_fonts/font = ExtResource( 1 )
+text = "Help"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title3" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 123.95
+margin_top = 405.2
+margin_right = -125.05
+margin_bottom = -25.8001
+custom_fonts/font = ExtResource( 1 )
+text = "esc to go back"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 23.0
+margin_top = 265.35
+margin_right = -25.0
+margin_bottom = -65.6501
+custom_fonts/font = ExtResource( 1 )
+text = "arrow keys - move
+z or space - use pump
+escape key - Pause
+
+use the pump to inflate enemies and explode them!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="focus_entered" from="Options/DebugOption/Button" to="Options/DebugOption" method="_on_Button_focus_entered"]

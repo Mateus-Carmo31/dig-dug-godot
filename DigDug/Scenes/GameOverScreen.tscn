@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Misc/ArcadeFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Misc/TextBlinkMat.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/ArrowButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/GameOverScreen.gd" type="Script" id=4]
+[ext_resource path="res://Audio/SFX/rock_land.wav" type="AudioStream" id=5]
+
+
+
+
+
+
+[node name="GameOverScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouWin" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 52.7289
+margin_top = 95.3834
+margin_right = -299.271
+margin_bottom = -335.616
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.658824, 0, 0, 1 )
+text = "YOU LOST"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalScoreText" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 49.0
+margin_top = 208.651
+margin_right = -204.0
+margin_bottom = -220.349
+custom_fonts/font = ExtResource( 1 )
+text = "Final Score:"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalScore" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 262.0
+margin_top = 206.508
+margin_right = -88.0
+margin_bottom = -223.492
+rect_scale = Vector2( 1.4, 1.4 )
+custom_fonts/font = ExtResource( 1 )
+text = "999999"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewHighScore" type="Label" parent="."]
+visible = false
+modulate = Color( 0.658824, 0, 0, 1 )
+material = ExtResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 233.739
+margin_top = 238.25
+margin_right = -15.2614
+margin_bottom = -192.75
+custom_fonts/font = ExtResource( 1 )
+text = "New Highscore!"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" parent="." instance=ExtResource( 3 )]
+margin_left = 172.0
+margin_top = 325.0
+margin_right = 286.0
+margin_bottom = 342.0
+focus_neighbour_top = NodePath("../ReturnButton")
+focus_neighbour_bottom = NodePath("../ReturnButton")
+text = "Restart"
+
+[node name="ReturnButton" parent="." instance=ExtResource( 3 )]
+margin_left = 172.0
+margin_top = 352.0
+margin_right = 316.0
+margin_bottom = 369.0
+focus_neighbour_top = NodePath("../RestartButton")
+focus_neighbour_bottom = NodePath("../RestartButton")
+text = "Main menu"
+clip_text = false
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_ReturnButton_pressed"]

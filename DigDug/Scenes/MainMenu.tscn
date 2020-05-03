@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/ArrowButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://Misc/ArcadeFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/OptionsMenu.tscn" type="PackedScene" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlaceholderTitle" type="Label" parent="Menu"]
+modulate = Color( 0.658824, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 18.8062
+margin_top = 94.756
+margin_right = -349.194
+margin_bottom = -112.244
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "DIG-DUG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" parent="Menu" instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 188.142
+margin_top = 255.321
+margin_right = -197.858
+margin_bottom = -175.679
+focus_neighbour_top = NodePath("../Quit")
+focus_neighbour_bottom = NodePath("../Options")
+focus_next = NodePath("../Options")
+focus_previous = NodePath("../Quit")
+text = "Start"
+align = 1
+
+[node name="Options" parent="Menu" instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 177.309
+margin_top = 281.869
+margin_right = -185.691
+margin_bottom = -149.131
+focus_neighbour_top = NodePath("../Start")
+focus_neighbour_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Start")
+text = "Options"
+align = 1
+
+[node name="Quit" parent="Menu" instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 202.965
+margin_top = 307.643
+margin_right = -212.035
+margin_bottom = -123.357
+focus_neighbour_top = NodePath("../Options")
+focus_neighbour_bottom = NodePath("../Start")
+focus_next = NodePath("../Start")
+focus_previous = NodePath("../Options")
+text = "Quit"
+align = 1
+
+[node name="HighScoreText" type="Label" parent="Menu"]
+margin_left = 86.3997
+margin_top = 405.2
+margin_right = 246.4
+margin_bottom = 422.2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.658824, 0, 0, 1 )
+text = "High-Score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScore" type="Label" parent="Menu"]
+margin_left = 271.0
+margin_top = 405.2
+margin_right = 367.0
+margin_bottom = 422.2
+custom_fonts/font = ExtResource( 3 )
+text = "999999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+[connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Menu/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_Quit_pressed"]

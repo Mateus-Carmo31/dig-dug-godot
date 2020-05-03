@@ -1,0 +1,667 @@
+[gd_scene load_steps=66 format=2]
+
+[ext_resource path="res://Audio/SFX/pump_launch.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sprites/Player.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
+[ext_resource path="res://Audio/Music/main_theme_bass.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/Music/main_theme_melody.wav" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.87387, 10.1586 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "DeathDown"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 44, 45, 46, 47 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "player_died" ],
+"method": "emit_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "DeathLeft"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "player_died" ],
+"method": "emit_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "DeathRight"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "player_died" ],
+"method": "emit_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "DeathUp"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38, 39 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "player_died" ],
+"method": "emit_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 15 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 12, 13 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10, 11 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "IdleDigDown"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "IdleDigLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "IdleDigRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "IdleDigUp"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "LaunchDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 19 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "LaunchLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "LaunchRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "LaunchUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "PumpDown"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 27, 26 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "PumpLeft"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 25, 24 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "PumpRight"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 21, 20 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "PumpUp"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 23, 22 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "DeathDown"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "DeathUp"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "DeathLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "DeathRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=26]
+blend_point_0/node = SubResource( 22 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 23 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 24 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 25 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "DigLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "DigRight"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "DigUp"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "DigDown"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=31]
+blend_point_0/node = SubResource( 27 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 28 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 29 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 30 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "IdleDigDown"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "IdleDigUp"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "IdleDigLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "IdleDigRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=36]
+blend_point_0/node = SubResource( 32 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 33 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 34 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 35 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "LaunchDown"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "LaunchUp"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "LaunchLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "LaunchRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=41]
+blend_point_0/node = SubResource( 37 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 38 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 39 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 40 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "PumpRight"
+
+[sub_resource type="AnimationNodeAnimation" id=43]
+animation = "PumpLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "PumpUp"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "PumpDown"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=46]
+blend_point_0/node = SubResource( 42 )
+blend_point_0/pos = Vector2( 1, 0 )
+blend_point_1/node = SubResource( 43 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 44 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 45 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+
+[sub_resource type="AnimationNodeStateMachine" id=59]
+states/DeadAnim/node = SubResource( 26 )
+states/DeadAnim/position = Vector2( 479, 349 )
+states/Digging/node = SubResource( 31 )
+states/Digging/position = Vector2( 674, 220 )
+states/IdleDig/node = SubResource( 36 )
+states/IdleDig/position = Vector2( 387, 220 )
+states/Launch/node = SubResource( 41 )
+states/Launch/position = Vector2( 387, 133 )
+states/Pump/node = SubResource( 46 )
+states/Pump/position = Vector2( 674, 133 )
+transitions = [ "IdleDig", "Digging", SubResource( 47 ), "Digging", "IdleDig", SubResource( 48 ), "Digging", "DeadAnim", SubResource( 49 ), "IdleDig", "DeadAnim", SubResource( 50 ), "DeadAnim", "IdleDig", SubResource( 51 ), "IdleDig", "Launch", SubResource( 52 ), "Digging", "Launch", SubResource( 53 ), "Launch", "IdleDig", SubResource( 54 ), "Launch", "Digging", SubResource( 55 ), "Launch", "Pump", SubResource( 56 ), "Pump", "Digging", SubResource( 57 ), "Pump", "IdleDig", SubResource( 58 ) ]
+start_node = "IdleDig"
+graph_offset = Vector2( 10, 184 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
+
+[node name="Player" type="Area2D"]
+z_index = 1
+collision_mask = 14
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+offset = Vector2( 8, 8 )
+vframes = 6
+hframes = 8
+frame = 8
+
+[node name="PlayerHurtbox" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DeathDown = SubResource( 2 )
+anims/DeathLeft = SubResource( 3 )
+anims/DeathRight = SubResource( 4 )
+anims/DeathUp = SubResource( 5 )
+anims/DigDown = SubResource( 6 )
+anims/DigLeft = SubResource( 7 )
+anims/DigRight = SubResource( 8 )
+anims/DigUp = SubResource( 9 )
+anims/IdleDigDown = SubResource( 10 )
+anims/IdleDigLeft = SubResource( 11 )
+anims/IdleDigRight = SubResource( 12 )
+anims/IdleDigUp = SubResource( 13 )
+anims/LaunchDown = SubResource( 14 )
+anims/LaunchLeft = SubResource( 15 )
+anims/LaunchRight = SubResource( 16 )
+anims/LaunchUp = SubResource( 17 )
+anims/PumpDown = SubResource( 18 )
+anims/PumpLeft = SubResource( 19 )
+anims/PumpRight = SubResource( 20 )
+anims/PumpUp = SubResource( 21 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 59 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 60 )
+parameters/DeadAnim/blend_position = Vector2( 0.584436, 0.190751 )
+parameters/Digging/blend_position = Vector2( 0.508171, 0.0172414 )
+parameters/IdleDig/blend_position = Vector2( 0.340078, -0.0172414 )
+parameters/Launch/blend_position = Vector2( 0.299611, -0.0603448 )
+parameters/Pump/blend_position = Vector2( 0.508171, -0.206897 )
+
+[node name="PumpTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="MusicTimer" type="Timer" parent="."]
+
+[node name="PlayerSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="MelodyStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Music"
+
+[node name="BassStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Music"
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
+[connection signal="timeout" from="PumpTimer" to="." method="_on_PumpTimer_timeout"]
+[connection signal="timeout" from="MusicTimer" to="." method="_on_MusicTimer_timeout"]

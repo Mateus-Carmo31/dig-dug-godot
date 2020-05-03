@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy_death_pump.wav-6fc3d924b9ed643c93187438d2dc0e68.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/enemy_death_pump.wav"
+dest_files=[ "res://.import/enemy_death_pump.wav-6fc3d924b9ed643c93187438d2dc0e68.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

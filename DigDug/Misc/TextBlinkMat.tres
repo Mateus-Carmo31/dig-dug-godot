@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform bool blink_enabled = true;
+uniform float blink_speed : hint_range(1.0, 6.0) = 4.0;
+
+void fragment()
+{
+	if(!blink_enabled)
+	{
+		COLOR = texture(TEXTURE, UV);
+	}
+	else
+	{
+		COLOR = (fract(TIME * 0.1 * blink_speed) > 0.5 ? 1.0 : 0.0) * texture(TEXTURE, UV);
+	}
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/blink_enabled = true
+shader_param/blink_speed = 6.0

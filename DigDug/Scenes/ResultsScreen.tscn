@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Misc/ArcadeFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Misc/TextBlinkMat.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/ResultsScreen.gd" type="Script" id=3]
+[ext_resource path="res://Audio/SFX/rock_land.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/Music/finale_theme.wav" type="AudioStream" id=5]
+
+
+
+
+
+[node name="ResultsScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouWin" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.5215
+margin_top = 66.8756
+margin_right = -295.479
+margin_bottom = -364.124
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.658824, 0, 0, 1 )
+text = "YOU WIN"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalScoreText" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 59.5116
+margin_top = 180.0
+margin_right = -228.488
+margin_bottom = -249.0
+custom_fonts/font = ExtResource( 1 )
+text = "Final Score:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalScore" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 261.226
+margin_top = 178.0
+margin_right = -88.7738
+margin_bottom = -252.0
+rect_scale = Vector2( 1.4, 1.4 )
+custom_fonts/font = ExtResource( 1 )
+text = "999999"
+align = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewHighScore" type="Label" parent="."]
+visible = false
+modulate = Color( 0.658824, 0, 0, 1 )
+material = ExtResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 236.997
+margin_top = 213.0
+margin_right = -12.0033
+margin_bottom = -218.0
+custom_fonts/font = ExtResource( 1 )
+text = "New Highscore!"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thanks" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 133.857
+margin_top = 267.594
+margin_right = -122.143
+margin_bottom = -102.406
+custom_fonts/font = ExtResource( 1 )
+text = "Thank you for playing the game!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Source" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 157.778
+margin_top = 368.542
+margin_right = -98.2217
+margin_bottom = -22.4575
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = ExtResource( 1 )
+text = "Original Game by
+Namco Bandai"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"

@@ -1,0 +1,189 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Sprites/Enemy.png" type="Texture" id=1]
+[ext_resource path="res://Audio/SFX/pump.wav" type="AudioStream" id=2]
+[ext_resource path="res://Scripts/WalkerEnemy.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.79577, 8.21756 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Ghost"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "HurtLeft"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "HurtRight"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Ghost"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "HurtLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "HurtRight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=10]
+blend_point_0/node = SubResource( 8 )
+blend_point_0/pos = -0.5
+blend_point_1/node = SubResource( 9 )
+blend_point_1/pos = 0.5
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "WalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=13]
+blend_point_0/node = SubResource( 11 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 12 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/Ghost/node = SubResource( 7 )
+states/Ghost/position = Vector2( 627, 132 )
+states/Hurt/node = SubResource( 10 )
+states/Hurt/position = Vector2( 451, 217 )
+states/Walk/node = SubResource( 13 )
+states/Walk/position = Vector2( 451, 132 )
+transitions = [ "Walk", "Ghost", SubResource( 14 ), "Ghost", "Walk", SubResource( 15 ), "Hurt", "Walk", SubResource( 16 ), "Walk", "Hurt", SubResource( 17 ) ]
+start_node = "Walk"
+graph_offset = Vector2( -3, 50 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+
+[node name="WalkerEnemy" type="Area2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 3 )
+move_speed = 49.0
+
+[node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+offset = Vector2( 8, 8 )
+vframes = 2
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+margin_left = -3.0
+margin_top = -15.0
+margin_right = 37.0
+margin_bottom = -1.0
+text = "State"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Ghost = SubResource( 2 )
+anims/HurtLeft = SubResource( 3 )
+anims/HurtRight = SubResource( 4 )
+anims/WalkLeft = SubResource( 5 )
+anims/WalkRight = SubResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 19 )
+parameters/Hurt/blend_position = 0.70989
+parameters/Walk/blend_position = 1.41465
+
+[node name="GhostCooldown" type="Timer" parent="."]
+
+[node name="PumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "SFX"

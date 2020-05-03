@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Misc/ArcadeFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Sprites/Arrow.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/ArrowButton.gd" type="Script" id=3]
+
+
+
+
+
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="ArrowButton" type="Button"]
+margin_right = 133.0
+margin_bottom = 17.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+action_mode = 0
+text = "LOREMIPS"
+clip_text = true
+align = 0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_bottom = 0.941
+margin_left = -19.5202
+margin_right = -3.52015
+margin_bottom = 0.00299931
+rect_min_size = Vector2( 16, 16 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="focus_entered" from="." to="." method="_on_ArrowButton_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_ArrowButton_focus_exited"]

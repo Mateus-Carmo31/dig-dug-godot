@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/main_theme_melody.wav-e58f0a64c5bdf0b4014e7f56c9e56fe3.sample"
+
+[deps]
+
+source_file="res://Audio/Music/main_theme_melody.wav"
+dest_files=[ "res://.import/main_theme_melody.wav-e58f0a64c5bdf0b4014e7f56c9e56fe3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

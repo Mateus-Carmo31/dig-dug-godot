@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/finale_theme.wav-6934f528234d0839acad233cf1292927.sample"
+
+[deps]
+
+source_file="res://Audio/Music/finale_theme.wav"
+dest_files=[ "res://.import/finale_theme.wav-6934f528234d0839acad233cf1292927.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
