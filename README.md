@@ -1,6 +1,8 @@
 # Dig Dug in Godot
 Dig Dug made entirely in the Godot Engine 3.2.1
 
+![Dig Dug](/dig_dug_example.png)
+
 __This game was made by me entirely for learning purposes. All rights concerning the DigDug franchise of games and its assets belong to Bandai Namco Entertainment.__
 
 Sprites were obtained from [Spriters Resource][0], and any other sprites that are not from the original game were made by me.
